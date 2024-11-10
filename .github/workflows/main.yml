@@ -1,0 +1,31 @@
+name: CI-CD
+
+on:
+ push:
+    branches: ["main"]
+ workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubunutu-latest
+    steps:
+      - name: Autenticação Docker Hub
+        run: echo "Executando o comando DOCKER LOGIN"
+      - name: Construção da Imagem Docker
+        run: echo "Executando o comando DOCKER BUILD"
+      - name: Envio da Imagem Docker
+        run: echo "Executando o comando DOCKER PUSH"
+
+  cd:
+    runs-on: ubunutu-latest
+    steps:
+      - name: Autenticação na AWS
+        run: echo "Executando o comando AWS CONFIGURE"
+      - name: Configurar o kubctl
+        run: echo "Executando o comando AWS EKS UPDATE-KUBCONFIG"
+      - name: Deploy dos manifestos
+        run: echo "Executando o comando KUBECTL APPLY"
+
+
+    
+  
