@@ -47,6 +47,7 @@ kind: Deployment
 metadata:
   name: fakeshop
 spec:
+  replicas: 4
   selector:
     matchLabels:
       app: fakeshop
@@ -62,7 +63,7 @@ spec:
             - containerPort: 5000
           env:
             - name: DB_HOST
-              value: postgre
+              value: postegre
             - name: DB_USER
               value: fakeshop
             - name: DB_PASSWORD
