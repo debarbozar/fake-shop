@@ -20,3 +20,18 @@ spec:
            image: debarbozar/fake-shop:v1
            ports:
             - containerPort: 5000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fake-shop
+spec:
+  selector:
+    app: fake-shop
+  ports:
+  - port: 80 
+    targetPort: 5000
+    nodePort: 30000
+  type: NodePort
