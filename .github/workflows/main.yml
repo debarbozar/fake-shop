@@ -18,11 +18,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Construção da Imagem Docker
-        run: echo "Executando o comando DOCKER BUILD"
-
-      - name: Envio da Imagem Docker
-        run: echo "Executando o comando DOCKER PUSH"
+      - name: Build e Push Docker hub
+        uses: docker/build-push-action@v6
+        with:
+          context: ./src
+          push: true
+          file: src/Dockerfile
+          tags: |
+            debarbozar/fake-shop:latest
+            debarbozar/fake-shop:v${{github.run_number}}
 
 
   cd-eks:
