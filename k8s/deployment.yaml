@@ -5,6 +5,7 @@ kind: Deployment
 metadata:
   name: postegre
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: postegre
@@ -47,7 +48,7 @@ kind: Deployment
 metadata:
   name: fakeshop
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
       app: fakeshop
