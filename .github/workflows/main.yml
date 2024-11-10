@@ -6,23 +6,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  ci:
+  ci-docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Autenticação Docker Hub
-        run: echo "Executando o comando DOCKER LOGIN"
+      - name: Realizar checkout do projeto
+        uses: actions/checkout@v4
+
+      - name: Autenticar Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Construção da Imagem Docker
         run: echo "Executando o comando DOCKER BUILD"
+
       - name: Envio da Imagem Docker
         run: echo "Executando o comando DOCKER PUSH"
 
-  cd:
+
+  cd-eks:
     runs-on: ubuntu-latest
     needs: [ci]
     steps:
       - name: Autenticação na AWS
         run: echo "Executando o comando AWS CONFIGURE"
+
       - name: Configurar o kubectl
         run: echo "Executando o comando AWS EKS UPDATE-KUBECONFIG"
+
       - name: Deploy dos manifestos
         run: echo "Executando o comando KUBECTL APPLY"
