@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: fake-shop
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fake-shop
+  template:
+      metadata:
+        labels:
+          app: fake-shop
+      spec:
+        containers:
+         - name: fake-shop
+           image: debarbozar/fake-shop:v1
+           ports:
+            - containerPort: 5000
