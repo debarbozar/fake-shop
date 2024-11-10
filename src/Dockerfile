@@ -7,4 +7,4 @@ COPY . /app
 RUN chmod +x /app/entrypoint.sh
 ENV PROMETHEUS_MULTIPROC_DIR=/tmp/metrics
 RUN mkdir -p /tmp/metrics 
-CMD ["/app/entrypoint.sh"]
+CMD ["sh" "/app/entrypoint.sh"]
