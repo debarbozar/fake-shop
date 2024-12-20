@@ -6,6 +6,41 @@ on:
   workflow_dispatch:
 
 jobs:
+  test-trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Trivy
+        run: |
+          curl -sfL https://github.com/aquasecurity/trivy/releases/download/v0.43.0/trivy_0.43.0_Linux-x86_64.tar.gz -o trivy.tar.gz
+          tar zxvf trivy.tar.gz
+          sudo mv trivy /usr/local/bin/
+
+
+      - name: Run Trivy vulnerability scanner and create GitHub issues
+        uses: knqyf263/trivy-issue-action@v0.0.6
+        with:
+          assignee: debarbozar
+          severity: CRITICAL
+          label: security
+
+  # test-sonarquobe:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+
+
+
+
+
+
+
+
+
+
   ci-docker:
     runs-on: ubuntu-latest
     steps:
