@@ -25,6 +25,8 @@ jobs:
           assignee: debarbozar
           severity: CRITICAL
           label: security
+        env:
+          TRIVY_TOKEN: ${{ secrets.TRIVY_TOKEN }}
 
   # test-sonarquobe:
   #   runs-on: ubuntu-latest
