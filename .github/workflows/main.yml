@@ -25,9 +25,8 @@ jobs:
           assignee: debarbozar
           severity: 'CRITICAL,HIGH,LOW'
           label: security
-          filename: result.json
         env:
-          GH_TOKEN: ${{ secrets.TRIVY_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
   # test-sonarquobe:
   #   runs-on: ubuntu-latest
