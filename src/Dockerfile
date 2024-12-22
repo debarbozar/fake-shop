@@ -1,4 +1,4 @@
-FROM python:3.11.0
+FROM python:3.14.0a3
 EXPOSE 5000
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
